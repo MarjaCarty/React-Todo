@@ -18,7 +18,7 @@ class App extends React.Component {
     this.setState({ input: e.target.value });
   };
 
-  handleAdd = (e) => {
+  handleAdd = () => {
     this.setState({
       todos: [
         ...this.state.todos,
@@ -28,11 +28,21 @@ class App extends React.Component {
     });
   };
 
+  handleToggle = (itemId) => {
+    this.setState(
+      this.state.todos.filter((todo) => {
+        if (todo.id === itemId) {
+          todo.completed = !todo.completed;
+        }
+      })
+    );
+  };
+
   render() {
     return (
       <div>
         <h1>Todo List</h1>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} handleToggle={this.handleToggle} />
         <TodoForm
           change={this.handleInputChange}
           value={this.state.input}

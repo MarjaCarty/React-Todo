@@ -5,11 +5,11 @@ import React from "react";
 import Todo from "./Todo";
 
 export default function TodoList(props) {
-  const { todos } = props;
+  const { todos, handleToggle } = props;
   return (
     <div>
       {todos.map((todo) => {
-        return <Todo todo={todo} />;
+        return <Todo todo={todo} handleToggle={handleToggle} />;
       })}
     </div>
   );
