@@ -5,7 +5,7 @@ export default function Todo(props) {
   const { todo, handleToggle } = props;
 
   return (
-    <div>
+    <div className="todo">
       <p
         onClick={() => handleToggle(todo.id)}
         className={todo.completed ? "finished" : ""}

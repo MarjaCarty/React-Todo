@@ -1,0 +1,18 @@
+input {
+  padding: 0.5%;
+}
+
+button {
+  display: block;
+  margin: 1% auto;
+  border: 2px solid steelblue;
+  background-color: white;
+  color: steelblue;
+  border-radius: 3px;
+  padding: 1%;
+}
+
+button:hover {
+  color: white;
+  background-color: steelblue;
+}

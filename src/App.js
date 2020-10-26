@@ -1,6 +1,7 @@
 import React from "react";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
+import "./App.css";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -19,13 +20,15 @@ class App extends React.Component {
   };
 
   handleAdd = () => {
-    this.setState({
-      todos: [
-        ...this.state.todos,
-        { task: this.state.input, id: Date.now(), completed: false },
-      ],
-      input: "",
-    });
+    if (this.state.input) {
+      this.setState({
+        todos: [
+          ...this.state.todos,
+          { task: this.state.input, id: Date.now(), completed: false },
+        ],
+        input: "",
+      });
+    }
   };
 
   handleToggle = (itemId) => {
@@ -38,6 +41,14 @@ class App extends React.Component {
     );
   };
 
+  handleClear = (e) => {
+    this.setState({
+      todos: this.state.todos.filter((todo) => {
+        return !todo.completed;
+      }),
+    });
+  };
+
   render() {
     return (
       <div>
@@ -47,6 +58,7 @@ class App extends React.Component {
           change={this.handleInputChange}
           value={this.state.input}
           add={this.handleAdd}
+          clear={this.handleClear}
         />
       </div>
     );
