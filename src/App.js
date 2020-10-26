@@ -10,14 +10,34 @@ class App extends React.Component {
     super();
     this.state = {
       todos: [],
+      input: "",
     };
   }
+
+  handleInputChange = (e) => {
+    this.setState({ input: e.target.value });
+  };
+
+  handleAdd = (e) => {
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        { task: this.state.input, id: Date.now(), completed: false },
+      ],
+      input: "",
+    });
+  };
 
   render() {
     return (
       <div>
+        <h1>Todo List</h1>
         <TodoList todos={this.state.todos} />
-        <TodoForm />
+        <TodoForm
+          change={this.handleInputChange}
+          value={this.state.input}
+          add={this.handleAdd}
+        />
       </div>
     );
   }
